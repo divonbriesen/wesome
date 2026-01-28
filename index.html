@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camelids & Code - The Awesome Fusion</title>
+    <meta
+      name="description"
+      content="Discover the amazing world where llamas, vicuñas, and alpacas meet web development - fluffy, functional, and fantastic!"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #4f46e5;
+        --secondary-color: #f59e0b;
+        --accent-color: #10b981;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
+        --bg-light: #f9fafb;
+        --bg-white: #ffffff;
+        --border-color: #e5e7eb;
+        --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        background: var(--gradient-1);
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+          repeat;
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--secondary-color);
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+      }
+
+      /* Floating Elements */
+      .floating-llama {
+        position: absolute;
+        font-size: 3rem;
+        animation: float 6s ease-in-out infinite;
+        opacity: 0.7;
+      }
+
+      .floating-llama:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .floating-llama:nth-child(2) {
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+
+      .floating-llama:nth-child(3) {
+        top: 80%;
+        left: 15%;
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(-3deg);
+        }
+        75% {
+          transform: translateY(-15px) rotate(3deg);
+        }
+      }
+
+      /* Sections */
+      .section {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: var(--text-dark);
+      }
+
+      /* Cards */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .card {
+        background: var(--bg-white);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid var(--border-color);
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+      }
+
+      .card p {
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      /* Features Section */
+      .features {
+        background: var(--bg-light);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        margin-top: 3rem;
+      }
+
+      .feature {
+        text-align: center;
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient-2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: white;
+      }
+
+      .feature h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+      }
+
+      /* Code Section */
+      .code-section {
+        background: var(--text-dark);
+        color: white;
+      }
+
+      .code-container {
+        background: #0f172a;
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 2rem 0;
+        position: relative;
+        overflow-x: auto;
+      }
+
+      .code-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #334155;
+      }
+
+      .code-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .code-dot.red {
+        background: #ef4444;
+      }
+      .code-dot.yellow {
+        background: #f59e0b;
+      }
+      .code-dot.green {
+        background: #10b981;
+      }
+
+      .code-title {
+        margin-left: 1rem;
+        color: #94a3b8;
+        font-size: 0.875rem;
+      }
+
+      pre {
+        font-family: "Monaco", "Menlo", monospace;
+        font-size: 0.875rem;
+        line-height: 1.7;
+        color: #e2e8f0;
+      }
+
+      .keyword {
+        color: #c084fc;
+      }
+      .string {
+        color: #34d399;
+      }
+      .comment {
+        color: #64748b;
+      }
+      .function {
+        color: #60a5fa;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: var(--gradient-3);
+        color: white;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .cta-section p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--text-dark);
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      /* Interactive Elements */
+      .llama-counter {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        margin: 2rem 0;
+        backdrop-filter: blur(10px);
+      }
+
+      .counter-btn {
+        background: var(--secondary-color);
+        border: none;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .counter-btn:hover {
+        transform: scale(1.1);
+        background: #d97706;
+      }
+
+      .counter-display {
+        font-size: 1.5rem;
+        font-weight: 600;
+        min-width: 60px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .section {
+          padding: 3rem 0;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .cards-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .floating-llama {
+          display: none;
+        }
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="floating-llama">🦙</div>
+      <div class="floating-llama">🦙</div>
+      <div class="floating-llama">🦙</div>
+
+      <div class="container">
+        <div class="hero-content">
+          <h1>Camelids & Code</h1>
+          <p>
+            Where the fluffy awesomeness of llamas, vicuñas, and alpacas meets
+            the elegant world of web development. Discover the perfect fusion of
+            nature's most charming creatures and digital creativity!
+          </p>
+
+          <div class="llama-counter">
+            <button class="counter-btn" onclick="decrementLlamas()">-</button>
+            <span class="counter-display" id="llamaCount">42</span>
+            <button class="counter-btn" onclick="incrementLlamas()">+</button>
+            <span>Lines of Llama Code</span>
+          </div>
+
+          <a href="#features" class="cta-button">Explore the Awesomeness</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">The Perfect Stack: Camelids + Code</h2>
+
+        <div class="cards-grid">
+          <div class="card">
+            <span class="card-icon">🦙</span>
+            <h3>Llamas</h3>
+            <p>
+              Like robust backend frameworks, llamas are reliable, sturdy, and
+              can carry heavy loads. They're the Node.js of the camelid world -
+              dependable, versatile, and perfect for handling complex tasks with
+              their calm demeanor and strong problem-solving skills.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="card-icon">🦌</span>
+            <h3>Vicuñas</h3>
+            <p>
+              Vicuñas are the premium TypeScript of camelids - elegant, refined,
+              and incredibly valuable. Their ultra-fine wool is like clean,
+              type-safe code: rare, beautiful, and highly sought after by those
+              who appreciate quality craftsmanship.
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="card-icon">🐑</span>
+            <h3>Alpacas</h3>
+            <p>
+              Alpacas are the React of the camelid family - friendly,
+              component-based (that fluffy hair!), and perfect for creating
+              beautiful user experiences. Their gentle nature and adorable
+              appearance make everything better, just like a well-designed UI.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" id="features">
+      <div class="container">
+        <h2 class="section-title">Why Camelids Make Amazing Developers</h2>
+
+        <div class="features-grid">
+          <div class="feature">
+            <div class="feature-icon">🧠</div>
+            <h4>Intelligent Problem Solving</h4>
+            <p>
+              Camelids are incredibly smart and resourceful, just like great
+              developers. They can navigate complex terrain and find creative
+              solutions to challenges.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">🤝</div>
+            <h4>Team Players</h4>
+            <p>
+              These animals are naturally social and work well in herds, making
+              them perfect for agile development teams and collaborative coding
+              sessions.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">💪</div>
+            <h4>Resilient & Adaptable</h4>
+            <p>
+              From high altitudes to desert conditions, camelids adapt to any
+              environment - just like developers switching between different
+              tech stacks and frameworks.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">🎨</div>
+            <h4>Natural Beauty</h4>
+            <p>
+              Their inherent elegance mirrors the beauty of well-crafted code -
+              clean, purposeful, and aesthetically pleasing to those who
+              appreciate good design.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h4>Efficient Performance</h4>
+            <p>
+              Camelids are incredibly efficient with resources, much like
+              optimized code that delivers maximum results with minimal resource
+              consumption.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">🔄</div>
+            <h4>Continuous Learning</h4>
+            <p>
+              These curious creatures are always learning and adapting,
+              embodying the growth mindset essential for successful developers
+              in our ever-evolving field.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Section -->
+    <section class="section code-section">
+      <div class="container">
+        <h2 class="section-title" style="color: white">Code Like a Camelid</h2>
+        <p
+          style="
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+          "
+        >
+          Here's what camelid-inspired code looks like:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header">
+            <div class="code-dot red"></div>
+            <div class="code-dot yellow"></div>
+            <div class="code-dot green"></div>
+            <div class="code-title">camelid-framework.js</div>
+          </div>
+          <pre><code><span class="comment">// The Camelid Development Framework</span>
+<span class="keyword">class</span> <span class="function">CamelidDeveloper</span> {
+  <span class="function">constructor</span>(type = <span class="string">'llama'</span>) {
+    <span class="keyword">this</span>.type = type;
+    <span class="keyword">this</span>.fluffiness = <span class="string">'maximum'</span>;
+    <span class="keyword">this</span>.patience = <span class="string">'infinite'</span>;
+    <span class="keyword">this</span>.problemSolvingSkills = <span class="string">'legendary'</span>;
+  }
+
+  <span class="function">writeCode</span>(complexity) {
+    <span class="keyword">if</span> (<span class="keyword">this</span>.type === <span class="string">'alpaca'</span>) {
+      <span class="keyword">return</span> <span class="keyword">this</span>.<span class="function">createBeautifulUI</span>(complexity);
+    } <span class="keyword">else if</span> (<span class="keyword">this</span>.type === <span class="string">'vicuna'</span>) {
+      <span class="keyword">return</span> <span class="keyword">this</span>.<span class="function">craftElegantArchitecture</span>(complexity);
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="keyword">this</span>.<span class="function">buildRobustBackend</span>(complexity);
+    }
+  }
+
+  <span class="function">debug</span>(issue) {
+    <span class="comment">// Camelids never panic, they just calmly chew and think</span>
+    <span class="keyword">this</span>.<span class="function">chewThoughtfully</span>();
+    <span class="keyword">return</span> <span class="keyword">this</span>.<span class="function">findElegantSolution</span>(issue);
+  }
+
+  <span class="function">collaborate</span>(team) {
+    <span class="comment">// Natural herd mentality makes for great team dynamics</span>
+    <span class="keyword">return</span> team.<span class="function">map</span>(member => 
+      <span class="keyword">this</span>.<span class="function">shareWisdom</span>(member) + <span class="keyword">this</span>.<span class="function">offerSupport</span>(member)
+    );
+  }
+}
+
+<span class="comment">// Deploy with camelid-powered awesomeness</span>
+<span class="keyword">const</span> myDev = <span class="keyword">new</span> <span class="function">CamelidDeveloper</span>(<span class="string">'llama'</span>);
+<span class="keyword">const</span> amazingApp = myDev.<span class="function">writeCode</span>(<span class="string">'enterprise-level'</span>);</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+      <div class="container">
+        <h2>Ready to Join the Camelid Revolution?</h2>
+        <p>
+          Embrace the fluffy wisdom and start coding with the calm confidence of
+          a llama, the elegance of a vicuña, and the charm of an alpaca!
+        </p>
+        <a href="#" class="cta-button" onclick="showMessage()"
+          >Start Your Camelid Journey</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2026 Camelids & Code. Made with 🦙 and lots of ☕. No camelids
+          were harmed in the making of this website.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      let llamaCount = 42;
+
+      function incrementLlamas() {
+        llamaCount++;
+        document.getElementById("llamaCount").textContent = llamaCount;
+
+        // Add some fun animation
+        const counter = document.getElementById("llamaCount");
+        counter.style.transform = "scale(1.2)";
+        setTimeout(() => {
+          counter.style.transform = "scale(1)";
+        }, 200);
+      }
+
+      function decrementLlamas() {
+        if (llamaCount > 0) {
+          llamaCount--;
+          document.getElementById("llamaCount").textContent = llamaCount;
+
+          const counter = document.getElementById("llamaCount");
+          counter.style.transform = "scale(0.8)";
+          setTimeout(() => {
+            counter.style.transform = "scale(1)";
+          }, 200);
+        }
+      }
+
+      function showMessage() {
+        const messages = [
+          "🦙 Llama-stic choice!",
+          "🌟 You're alpaca-ing some serious skills!",
+          "💫 Vicuña believe how awesome this is!",
+          "🚀 Welcome to the fluffy side of development!",
+          "🎉 Your code is about to get 200% fluffier!",
+        ];
+
+        const randomMessage =
+          messages[Math.floor(Math.random() * messages.length)];
+        alert(randomMessage);
+      }
+
+      // Add some interactive scroll effects
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll(".floating-llama");
+
+        parallaxElements.forEach((element) => {
+          const speed = 0.5;
+          element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Add loading animation
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".card");
+        const features = document.querySelectorAll(".feature");
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        });
+
+        [...cards, ...features].forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          el.style.transition = "all 0.6s ease";
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>
